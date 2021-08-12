@@ -26,6 +26,11 @@ import Orbits from "@/components/Orbits.vue";
 export default {
   components: {
     Orbits
+  },
+  head() {
+    return {
+      title: "anfelos - home"
+    };
   }
 };
 </script>

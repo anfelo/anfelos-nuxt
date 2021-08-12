@@ -30,7 +30,7 @@
         :class="`navbar-menu ${isNavbarOpen ? 'is-active' : ''}`"
       >
         <div class="navbar-end">
-          <!-- <nuxt-link class="navbar-item" to="/about">
+          <nuxt-link class="navbar-item" to="/about">
             about
           </nuxt-link>
           <nuxt-link class="navbar-item" to="/work">
@@ -38,7 +38,7 @@
           </nuxt-link>
           <nuxt-link class="navbar-item" to="/blog">
             blog
-          </nuxt-link> -->
+          </nuxt-link>
           <div class="navbar-item has-dropdown is-hoverable">
             <ToggleSwitch
               :checked="isDark"

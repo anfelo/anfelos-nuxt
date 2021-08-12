@@ -22,6 +22,13 @@ export default {
           "https://fonts.googleapis.com/css2?family=Fira+Mono&family=Montserrat&family=Poppins:wght@700&display=swap"
       }
     ],
+    script: [
+      {
+        hid: "fontawesome",
+        src: "https://use.fontawesome.com/releases/v5.3.1/js/all.js",
+        defer: true
+      }
+    ],
     bodyAttrs: {
       class: "dark-theme"
     }
@@ -31,7 +38,7 @@ export default {
   css: ["@/assets/styles/global.scss"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ["@/pluggins/getbio.server.ts", "@/pluggins/getprojects.server.ts"],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
