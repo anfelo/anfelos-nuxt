@@ -6,7 +6,8 @@ export const state = () => ({
   tags: [...tags],
   bio: null,
   projects: [],
-  posts: []
+  posts: [],
+  currentPost: {}
 });
 
 export const mutations = {
@@ -21,6 +22,9 @@ export const mutations = {
   },
   updatePosts: (state, payload) => {
     state.posts = payload;
+  },
+  updateCurrentPost: (state, payload) => {
+    state.currentPost = payload;
   }
 };
 
@@ -65,6 +69,17 @@ export const actions = {
           return 0;
         });
         commit("updatePosts", sortedPosts);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  async getPostData({ state, commit }, payload) {
+    if (state.currentPost.title === payload) return;
+    try {
+      const res = await fromApi.getBlogPost(payload);
+      if (res.status === 200) {
+        commit("updateCurrentPost", res.body);
       }
     } catch (error) {
       console.log(error);
