@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { mapState } from "vuex";
 import AppNavbar from "@/components/AppNavbar.vue";
 import AppFooter from "@/components/AppFooter.vue";
