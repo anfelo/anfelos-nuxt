@@ -84,13 +84,37 @@ export async function getBlogPost(
   }
 }
 
+export async function getSnippets(): Promise<{
+  status: number;
+  body: any;
+}> {
+  const snippetsRef = db.collection("snippets");
+  const querySnapshot = await snippetsRef.get();
+  const snippetsData: any[] = [];
+
+  querySnapshot.forEach(doc => {
+    const docData = doc.data();
+    snippetsData.push({
+      ...docData
+    });
+  });
+
+  return {
+    status: 200,
+    body: snippetsData
+  };
+}
+
 export async function getSnippet(
   slug: string
 ): Promise<{ status: number; body: any }> {
   const storageRef = storage.ref(`snippets/${slug}.md`);
   const contentUrl = await storageRef.getDownloadURL();
   const contentRes = await fetch(contentUrl);
-  const contentString = await streamToString(contentRes.body);
+  let contentString = "";
+  if (contentRes.ok) {
+    contentString = await streamToString(contentRes.body);
+  }
 
   if (contentString) {
     return {
@@ -104,7 +128,7 @@ export async function getSnippet(
   }
 }
 
-function streamToString(stream) {
+function streamToString(stream): Promise<string> {
   const chunks: any[] = [];
   return new Promise((resolve, reject) => {
     stream.on("data", chunk => chunks.push(Buffer.from(chunk)));

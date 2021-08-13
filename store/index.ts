@@ -8,7 +8,8 @@ export const state = () => ({
   projects: [],
   posts: [],
   currentPost: {},
-  currentSnippet: {}
+  currentSnippet: {},
+  snippets: []
 });
 
 export const mutations = {
@@ -29,6 +30,9 @@ export const mutations = {
   },
   updateCurrentSnippet: (state, payload) => {
     state.currentSnippet = payload;
+  },
+  updateSnippets: (state, payload) => {
+    state.snippets = payload;
   }
 };
 
@@ -84,6 +88,17 @@ export const actions = {
       const res = await fromApi.getBlogPost(payload);
       if (res.status === 200) {
         commit("updateCurrentPost", res.body);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  async getSnippets({ state, commit }) {
+    if (state.snippets.length) return;
+    try {
+      const res = await fromApi.getSnippets();
+      if (res.status === 200) {
+        commit("updateSnippets", res.body);
       }
     } catch (error) {
       console.log(error);
