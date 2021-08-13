@@ -4,7 +4,9 @@
     <ul>
       <li v-for="snippet in snippets" :key="snippet.slug">
         <nuxt-link :to="`/snippets/${snippet.slug}`">
-          {{ snippet.slug }}
+          <div class="box">
+            {{ snippet.slug }}
+          </div>
         </nuxt-link>
       </li>
     </ul>
