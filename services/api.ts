@@ -84,6 +84,26 @@ export async function getBlogPost(
   }
 }
 
+export async function getSnippet(
+  slug: string
+): Promise<{ status: number; body: any }> {
+  const storageRef = storage.ref(`snippets/${slug}.md`);
+  const contentUrl = await storageRef.getDownloadURL();
+  const contentRes = await fetch(contentUrl);
+  const contentString = await streamToString(contentRes.body);
+
+  if (contentString) {
+    return {
+      status: 200,
+      body: {
+        content: contentString
+      }
+    };
+  } else {
+    return { status: 400, body: {} };
+  }
+}
+
 function streamToString(stream) {
   const chunks: any[] = [];
   return new Promise((resolve, reject) => {

@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     parseDate(date) {
-      return fromParsers.parseDate(date);
+      return date ? fromParsers.parseDate(date) : "";
     }
   },
   computed: {

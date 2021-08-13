@@ -38,7 +38,7 @@ export default {
   css: ["@/assets/styles/global.scss"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ["@/pluggins/getbio.server.ts", "@/pluggins/getprojects.server.ts"],
+  plugins: ["@/pluggins/getbio.server.ts"],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -53,5 +53,9 @@ export default {
   modules: [],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {}
+  build: {},
+
+  loading: {
+    color: "#f45d22"
+  }
 };

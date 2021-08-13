@@ -7,7 +7,8 @@ export const state = () => ({
   bio: null,
   projects: [],
   posts: [],
-  currentPost: {}
+  currentPost: {},
+  currentSnippet: {}
 });
 
 export const mutations = {
@@ -25,6 +26,9 @@ export const mutations = {
   },
   updateCurrentPost: (state, payload) => {
     state.currentPost = payload;
+  },
+  updateCurrentSnippet: (state, payload) => {
+    state.currentSnippet = payload;
   }
 };
 
@@ -80,6 +84,17 @@ export const actions = {
       const res = await fromApi.getBlogPost(payload);
       if (res.status === 200) {
         commit("updateCurrentPost", res.body);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  async getSnippetData({ state, commit }, payload) {
+    if (state.currentPost.content === payload) return;
+    try {
+      const res = await fromApi.getSnippet(payload);
+      if (res.status === 200) {
+        commit("updateCurrentSnippet", res.body);
       }
     } catch (error) {
       console.log(error);

@@ -193,6 +193,23 @@ body.dark-theme {
       border-bottom-color: $info;
     }
   }
+
+  .navbar-dropdown {
+    background-color: var(--card-bg);
+
+    .navbar-item {
+      color: var(--text-color);
+    }
+
+    .navbar-item:hover {
+      background-color: var(--card-active-bg);
+      color: var(--text-color);
+    }
+  }
+}
+
+.navbar-link {
+  align-items: flex-start !important;
 }
 
 @media (max-width: 768px) {
@@ -216,7 +233,7 @@ body.dark-theme {
   }
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 1024px) {
   .navbar-menu {
     .navbar-item {
       text-align: center;

@@ -31,6 +31,9 @@ export default {
   components: {
     CardList
   },
+  async asyncData({ store }) {
+    await store.dispatch("getProjectsData");
+  },
   head() {
     return {
       title: "anfelos - work"
